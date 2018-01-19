@@ -116,7 +116,7 @@ function updateAnalysers(time) {
             magnitude = magnitude / multiplier;
             var magnitude2 = freqByteData[i * multiplier];
             //analyserContext.fillStyle = "hsl( " + Math.round((i*2)/numBars) + ", 100%, 50%)";
-
+            document.getElementById("textr").innerHTML = magnitude;
 			analyserContext.fillStyle = "rgba(0,126,191,0.5)";
             analyserContext.fillRect(i * SPACING, canvasHeight, BAR_WIDTH, -magnitude*3);
 			analyserContext.strokeStyle = 'rgba(0,126,191,1)'; 
