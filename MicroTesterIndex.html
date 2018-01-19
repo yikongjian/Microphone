@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"/> 
+<title></title> 
+<meta name="keywords" content=""/> 
+<meta name="description" content=""/> 
+<meta name="viewport" content="width=device-width"/> 
+<style type="text/css">
+
+
+    #tester{
+        border:#aeabab 1px solid;
+        position: absolute;
+        left: 500px;
+        top: 200px;
+        width: 386px;
+        height: 282px;
+        border-radius:6px;
+        -webkit-border-radius:6px;
+        -moz-border-radius:6px;
+        box-shadow:0px 0px 10px #aeabab;
+        background-color: #fff;
+    }
+    
+    #tester-title{
+        padding-left: 20px;
+        height: 63px;
+        line-height: 63px;
+        width: 100%;
+        font-family: Arial;
+        color: #787878;
+        font-size: 14px;
+    }
+    #flash{
+        height: 140px;
+        width: 100%;
+        background-color: #f4f4f4;
+        border-top: #d8d8d8 1px solid;
+        /*border-bottom: #d8d8d8 1px solid;*/
+    }
+    #test-close{
+        position: absolute;
+        right: 15px;
+        top: 4px;
+        width: 4px;
+        height: 4px;
+
+    }
+    #test-close:hover{
+        cursor:pointer
+    }
+    #flash-tab{
+        border-top: #d8d8d8 1px solid;
+        padding-left: 20px;
+        
+    }
+
+    #flash-tab .focus{
+        border-top: #f4f4f4 1px solid;
+        border-bottom: #d8d8d8 1px solid;
+        border-left:#d8d8d8 1px solid;
+        border-right:#d8d8d8 1px solid;
+        font-size: 12px;
+        font-family: Arial;
+        width: 70px;
+        text-align: center;
+        height: 25px;
+        line-height: 25px;
+        background-color: #f4f4f4;
+        position: relative;
+        top: -1px;
+        display: inline-block;
+    }
+
+    #flash-tab .unfocus{
+        border-top: #d8d8d8 1px solid;
+        border-bottom: #fff 1px solid;
+        border-left:none 1px solid;
+        border-right:#fff 1px solid;
+        font-size: 12px;
+        font-family: Arial;
+        width: 70px;
+        text-align: center;
+        height: 25px;
+        line-height: 25px;
+        background-color: #fff;
+        position: relative;
+        top: -1px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    #flash-tab .unfocus:hover{
+        cursor: pointer;
+    }
+
+
+    #done{
+        margin-left: 290px;
+        width: 84px;
+        cursor: pointer;
+    }
+
+    #analyser{
+     
+        display: inline-block;
+     
+        background: #f4f4f4;
+     
+        width: 386px;
+
+        height: 140px;
+
+            
+        /*box-shadow: 0px 0px 10px blue;*/
+
+    }
+</style>
+</head> 
+<body> 
+<div class="g-doc"> 
+    <div class="g-hd"> 
+         
+    </div> 
+    <div class="g-bd"> 
+        <div class="g-mn"> 
+            
+        </div> 
+        <div class="g-sd"> 
+             
+        </div> 
+    </div> 
+    <div class="g-ft"> 
+         
+    </div>
+
+    <div id="tester">
+        <div id="tester-title">
+            Microphone-Tester
+            <div id="test-close">
+                X
+            </div>
+        </div>
+        <div id="flash">
+        </div>
+        <div id="flash-tab">
+            <div class="tab focus" id="microphone" data-src="Tester.Flash.swf">Microphone</div>
+        </div>
+        
+        <div >
+            <img id="done" src="img/done-btn.jpg" alt="" />
+        </div>
+
+    </div>
+
+<script type="text/javascript" src="Tester.js"></script>
+<script type="text/javascript">
+
+
+void function(){
+
+    var 
+          tabNode    = document.querySelectorAll('.tab')
+         ,timestamp  = Date.parse(new Date())
+         ,flashFrame = document.getElementById('flash')
+         ,btn        = document.getElementById('done')
+
+
+    Namespace.Init()
+    btn.addEventListener('click',function(e){
+        var 
+             microDom=document.getElementById('microphone')
+            ,swf=microDom.attributes.getNamedItem('data-src').value
+            ,timestamp=Date.parse(new Date())
+
+        if(!Namespace.html5){
+            flashFrame.innerHTML='<EMBED pluginspage=http://www.macromedia.com/go/getflashplayer src="'+swf+'?'+timestamp+'" width="386" height="140" type=application/x-shockwave-flash wmode="transparent" quality="high" id="player">'  
+        } else {
+            Namespace.require(['js/audiodisplay.js','js/recorderjs/recorder.js','js/main.js'],function(){
+                if(Namespace.Loaded.length===3){
+                    initAudio();
+                }
+            })            
+        }            
+    },false)
+}()
+
+
+    
+
+
+</script>
+
+
+</div> 
+</body> 
+</html> 
