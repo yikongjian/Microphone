@@ -168,9 +168,11 @@ void function(){
 
 
     Namespace.Init()
-    btn.addEventListener('click',function(e){
-        var 
-             microDom=document.getElementById('microphone')
+    audiodisplay()
+    btn.addEventListener('click',audiodisplay,false)
+
+    function audiodisplay(){
+        var microDom=document.getElementById('microphone')
             ,swf=microDom.attributes.getNamedItem('data-src').value
             ,timestamp=Date.parse(new Date())
 
@@ -182,8 +184,8 @@ void function(){
                     initAudio();
                 }
             })            
-        }            
-    },false)
+        }   
+    }
 }()
 
 
